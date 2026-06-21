@@ -1,45 +1,63 @@
 # samesoup
 
-An opinionated, curated list of the words, phrases, and constructions that read as AI-generated, plus a skill that finds them in any text.
+A curated, growing list of the words and constructions that read as AI-generated, plus a skill that finds them in any text. It points. It doesn't rewrite, suggest, or score.
 
-There's a beef noodle shop in Bangkok, Wattana Panich, that has kept the same broth simmering for over forty-five years. They never empty the pot. Each day they ladle out what sells and top it back up, so today's bowl still carries something of every bowl before it. The list works the same way. It never gets emptied; it only grows, and what went in early stays in the pot.
+## Example
 
-The name carries a second meaning, and that one is the real point. Once a word or format reads as AI, your history with it stops mattering. You get sorted into the same soup as everyone else, however you came by it.
+Give it a piece of text:
 
-This list does one thing. It points. You give it text, it names the tells it finds, and it hands you the result to do with as you like. No rewriting, no fixes, no score.
+> Here's the thing: it's not about the slides, it's about the journey. What's fascinating is how this delves into the intricate tapestry of human potential. The future isn't coming. It's already here.
 
-It's a curated list, biased on purpose, shaped by a small group of people who edit a lot of writing and argue about it. That curation is what makes it worth using, and it's the thing a crowd-sourced word dump can't give you.
+It hands you the flags:
 
-## Why this exists
+| Flag | Category | Why |
+|---|---|---|
+| "Here's the thing:" | announcement pause | promises a payoff, delivers a colon |
+| "it's not about the slides, it's about the journey" | false-contrast | manufactures depth by negating a strawman |
+| "What's fascinating is…" | announcement pause | tells you to be interested instead of being interesting |
+| "delves into" | filler word | the single most reliable tell |
+| "intricate tapestry" | filler word | two decorative nouns stacked |
+| "The future isn't coming. It's already here." | false-contrast | the time-flavored template, split for gravity |
 
-This is here to give writers and editors a fast way to see the patterns that now get text sorted, fairly or not, into the "a machine wrote this" pile. AI-shaming isn't the goal and never was.
+**Read:** saturated. Six tells in three sentences. The register, not a stray word.
 
-The mechanic is uncomfortable. Once a word or a format shows up in enough text that people read as AI-generated, it gets read that way everywhere. Your personal history with it grants you nothing. The marker stops living in your intent and starts living in the reader's pattern-recognition. You might have written with em dashes your whole life, used "tapestry" since school, reached for "quietly" in that exact sense for twenty years, and it stops mattering the moment enough machine-written text carries the same signal.
+What you do with the flags is your business. samesoup stops at pointing.
 
-The signal also keeps moving, because language inflates fast. The single bold opening line followed by a pause, the one everyone now uses to let a message land, was a sharp move right up until it became the move. The same goes for the words. A fresh phrase turns into a tell faster than feels reasonable, and once it does, insisting you came by it honestly drops you into the same soup as everyone else.
+## Install & use
 
-None of this is a verdict on anyone's character. The list is a snapshot of where pattern-recognition currently sits, and it keeps growing as new patterns surface.
+Drop `SKILL.md` and `tells.md` into wherever your agent reads skills.
 
-## What it does and doesn't do
+**Claude Code**
+```bash
+git clone https://github.com/u1i/samesoup ~/.claude/skills/samesoup
+```
 
-The output is a list of flags, and that's the whole product. There's no rewriting, no "humanized" version, no suggested alternatives.
+**Any agent that reads SKILL.md** (Cursor, Cline, Codex, Copilot, a Claude.ai Project): clone the repo and point the agent at `SKILL.md`, or paste its contents into the tool's rules/instructions field. The skill reads `tells.md` from the same folder.
 
-It also won't tell you a text "was written by AI." Plenty of humans write this way, which is the whole reason the tells exist, so the skill reports only that something reads as a tell.
+Then ask:
 
-It isn't a style ban either. Some flagged constructions work fine in the right place, so the skill points and you decide. And one tell on its own is usually nothing; a pile of them together is the signal.
+> "Scan this post for AI tells"
+> "Flag what reads as AI in this draft"
+> "Run samesoup on this"
 
-## How it works
-
-`SKILL.md` is the operational file. Wire it into a Claude skill, a Chrome extension, a pre-publish check, whatever you like. It tells the agent what to scan for and how to report it: name the tell, give the category, give a one-line reason, and stop there.
-
-`tells.md` is the reference corpus, with the actual words, phrases, and constructions grouped by type, each with a short reason. Match on the idea rather than the exact string, so every inflection counts ("delve," "delving," "delved," "delves").
+You get back a list of flags, each with its category and a one-line reason. No rewrite, no score.
 
 ## Contributing
 
-Small open project, closed gate. Anyone can open an issue or PR proposing a new tell or a better explanation, and the maintainer reviews and decides. That gate is a feature; an unfiltered list becomes noise, and the opinionated shape is what makes this worth using over a generic word dump.
+Small open project, closed gate. Open an issue or PR proposing a new tell with: the word or construction, the category, and a one-line reason it reads as a tell. New entries land in **Candidates** in `tells.md`, then get promoted. The maintainer decides what lands; that curation is the product. See `CONTRIBUTING.md`.
 
-When proposing a tell, include the word or phrase or construction, the category it belongs to, and a one-line reason it reads as a tell. New tells land in the **Candidates** section of `tells.md` first, then get promoted into a category. See `CONTRIBUTING.md` for the full process.
+## Why it works this way
+
+There's a beef noodle shop in Bangkok, Wattana Panich, that has kept the same broth simmering for over forty-five years. They never empty the pot. Each day they ladle out what sells and top it back up, so today's bowl still carries something of every bowl before it. The list works the same way. It never gets emptied; it only grows, and what went in early stays in the pot.
+
+The name carries a second meaning, and that one is the real point. Once a word or format reads as AI, your history with it stops mattering. You get sorted into the same soup as everyone else, however you came by it. You might have written with em dashes your whole life, used "tapestry" since school, reached for "quietly" in that exact sense for twenty years, and it stops mattering the moment enough machine-written text carries the same signal.
+
+The signal also keeps moving, because language inflates fast. A fresh phrase turns into a tell faster than feels reasonable. So the list is a snapshot of where pattern-recognition currently sits, and it grows as new patterns surface.
+
+A few things worth being clear about. samesoup never claims a text "was written by AI"; plenty of humans write this way, which is the whole reason the tells exist, so it reports only that something reads as a tell. It isn't a style ban; some flagged constructions work fine in the right place, so it points and you decide. And one tell on its own is usually nothing. A pile of them together is the signal.
+
+This is here to give writers and editors a fast way to see those patterns. AI-shaming isn't the goal and never was.
 
 ## License
 
-MIT. Take it, fork it, wire it into whatever you like.
+MIT.
